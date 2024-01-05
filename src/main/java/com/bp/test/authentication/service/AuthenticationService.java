@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
-
+    private final JwtService jwtService;
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
 
         return AuthenticationResponse.builder()
-                .token("dummyToken")
+                .token(jwtService.generateToken(request.username()))
                 .build();
     }
 }
